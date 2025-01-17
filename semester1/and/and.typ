@@ -25,7 +25,7 @@
   let level5_color = "#8D99AE"; 
 
   show: set block(below: line_skip)
-  show: set par(leading: line_skip, justify: true)
+  show: set par(leading: line_skip, justify: false)
   
   // Configure the page.
   set page(
@@ -693,15 +693,12 @@ Kruskal's algorithm finds an MST by sorting all edges in the graph by their weig
 == Limits
 
 *Indeterminate Forms:*
-
 $0/0, oo/oo, oo-oo, 0 dot oo, 1^oo, oo^0, 0^0$
 
 *L'Hôpital's Rule:*
-
 Applies for indeterminate cases. $lim_(x->c) f/g = lim_(x->c) f'/g'$.
 
 *Tips:*
-
 1. Factorize expressions or rationalize numerators/denominators.
 2. Look for dominant terms (e.g., highest power of $x$ in polynomials).
 3. For $oo - oo$, rewrite terms with a common denominator or use substitutions.
