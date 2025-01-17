@@ -231,14 +231,15 @@ The *Union-Find* data structure tracks a collection of disjoint sets and support
 - *Find*: Determine which set an element is in.
 - *Union*: Merge two sets into one.
 
+#colbreak()
+
 In this implementation, we will:
 - Use a *representative array* (`rep[n]`) where `rep[n]` is the parent of node `n`.
 - *No path compression*: The parent pointer will not be optimized to directly point to the root.
 - *Union by size*: We merge the smaller set into the larger one by overwriting the parent pointer.
 
 *Operations:*
-1. *Find*: Returns the representative of the set containing element `x`.
-   - It directly accesses `rep[x]` to get the parent.
+1. *Find*: Returns the representative of the set containing element `x`. It directly accesses `rep[x]` to get the parent.
 2. *Union*: Merges the sets containing `x` and `y` by overwriting the parent of the smaller set with the larger set's root.
 
 #sourcecode[
