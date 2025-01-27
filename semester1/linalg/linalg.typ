@@ -353,6 +353,8 @@ Basically we want to go from $m$ inequalities with $n$ variables to possibly $m^
 For 2x2: $det(mat(a,b;c,d;)) = a d - b c$. 
 For NxN: (Cofactors:) Make $+-+...$ grid. Pick a row/column and calculcate $plus.minus A_(i,j) det(...)$ recursively.
 
+*Quadratic Formula:* Either complete the square or $ x = (-b plus.minus sqrt(b^2- 4a c))/(2a) $
+
 == Properties
 
 *Fundamental:*
@@ -431,6 +433,7 @@ Given $A = mat(e_1, e_2, e_3)$ and $B = mat(b_1, b_2, b_3)$:
 Basically we want to find the Eigenvalues $lambda$ s.t. $A x = lambda x => (A - lambda I) x = 0 => det(A-lambda I) = 0$, where the $x$ which satisfy this for their given $lambda$ are called Eigenvectors.
 
 Since $A v_i = lambda_i v_i = v_i lambda_i => A V = V Lambda => A = V Lambda V^(-1) => A^k = V Lambda^k V^(-1)$.
+
 
 == Terms
 
