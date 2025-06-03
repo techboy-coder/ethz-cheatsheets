@@ -86,7 +86,7 @@
   \end{itemize}
   
   \cheatsheetsubsubsection{Payoffs at Expiration ($S_T$) \& Profits}
-  \SF{$S_T$: Asset price at expiration; $X$: Strike price.}
+  \SF{$S_T$: Asset price at expiration; $X$: Strike price. $u = 1/d$: Up factor}
   \begin{itemize}
     \item \F{Call Payoff $C_T = \max(S_T - X, 0)$}
     \item \F{Put Payoff $P_T = \max(X - S_T, 0)$}
@@ -137,7 +137,7 @@
   
   \cheatsheetsubsubsection{Bond Basics \& Definitions}
   \begin{itemize}
-    \item \D{Bond:} Issuer owes holder principal (Face Value, $FV$) and typically periodic interest (coupons).
+    \item \D{Bond:} Issuer owes holder principal (Face Value, $FV$) and typically periodic interest (coupons). (Denomination = currency unit, e.g. USD, EUR, \dots)
     \item \D{Coupon Rate:} Annual rate for coupon payments ($C_p = \text{CpnRate} \times FV / k$, where $k$ is cpns/yr).
     \item \D{Yield to Maturity (YTM):} Discount rate equating PV of bond's future CFs to its market price ($P_0$).
     \item \D{Indenture:} Legal contract of bond terms. \D{Trustee:} Oversees for bondholders.
@@ -146,6 +146,7 @@
     \item \D{Call Provision:} Issuer's right to redeem bond early. \A{Issuer calls if market rates $\ll$ coupon rate.}
     \item \D{Put Provision:} Holder's right to sell bond back to issuer early. \A{Holder puts if rates $\gg$ coupon rate or credit deteriorates.}
     \item \D{Convertible Bond:} Holder can exchange for issuer's stock. \A{Value = Straight Bond + Call Option on Stock. Lower coupon for issuer.}
+    \item \D{Foreign Bond:} Sold to local market, issued by foreign company. \SF{Yankee = USD, Samurai = JPY, Bulldog = GBP}
   \end{itemize}
   
   \cheatsheetsubsubsection{Bond Pricing}
@@ -173,6 +174,9 @@
   
   \item \D{Operating Lease:} Short-term, lessor maintains.  
         \D{Financial Lease:} Long-term, lessee maintains. Like borrowing to buy.
+      
+  \item \D{Affirmation of Lease:} Formal decision to continue lease payments during bankruptcy or financial distress.
+        \D{Capital Expenditure (CapEx) Controls:} Limits on large purchases to manage cash flow and risk. Leasing to avoid controls is not sensible!
 
   \item \D{Net Advantage to Leasing (NAL):}  
         Cost difference between leasing and buying.  
@@ -180,14 +184,21 @@
 
   \item \SF{$I_0$: Purchase price if buying. (e.g.\$100k machine), $L_t$: Lease payment in year $t$. (e.g.\$20k/year), $T_c$: Tax rate. (e.g.30\%), $Dep_t$: Depreciation (tax shield if owned)., $r_d$: Pre-tax borrowing rate. (e.g.8\%), $r_{d,AT}$: After-tax rate = $r_d(1 - T_c)$. (e.g.5.6\%), $SV$: After-tax salvage value at end. (e.g.\$10k)}
   \item \F{
-    \begin{align*}
+    \begin{align}
       NAL &= I_0 \\
           &- \sum_{t=0}^{N-1} \frac{L_t(1 - T_c)}{(1 + r_{d,AT})^{t'}} \\
           &- \sum_{t=1}^{N} \frac{Dep_t \cdot T_c}{(1 + r_{d,AT})^t} \\
           &\pm \frac{SV(1 - T_c)}{(1 + r_{d,AT})^N}
-    \end{align*}
+    \end{align}
   }
   \item \textit{Final SV term: Add if buyer keeps value; subtract if asset returns to lessor.}
+  \item \F{
+    \begin{align*}
+      PV_{\text{Lease Benefit}} &= C \times \left[1 - \frac{1}{(1 + r)^n} \right] \div r
+    \end{align*}
+  }
+  \item \A{E.g., Lease increases cash flows by \$480k/year for 10 years, $r = 7\%$ → $PV = 480{,}000 \times \left[1 - \frac{1}{(1.07)^{10}} \right] \div 0.07 \approx 3{,}400{,}000$}
+
 \end{itemize}
 
 
@@ -236,95 +247,98 @@
     \item \F{Price Change $\Delta P \approx -ModD \cdot P_0 \cdot \Delta YTM$}
     \item \A{Duration Matching: To immunize portfolio $NW$ from small parallel $\Delta i$, set $(ModD_{Asset} \cdot MV_{Asset}) = (ModD_{Liab} \cdot MV_{Liab})$.}
   \end{itemize}
-
-  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  % %%%%% PART IV: FINANCIAL PLANNING \& WORKING CAPITAL MANAGEMENT %%%%%%
-  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%% PART IV: FINANCIAL PLANNING & WORKING CAPITAL MANAGEMENT %%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \cheatsheetsection{Part IV: Financial Planning \& Working Capital Management}
   
-  \cheatsheetsubsubsection{Financial Planning}
+  \cheatsheetsubsubsection{Financial Planning Models}
+  \SF{$S_0$: current sales; $\Delta S$: projected change in sales; $S_1$: projected total sales ($S_0+\Delta S$); $A^*/S_0$: assets tied to sales as \% of $S_0$; $L^*_{spont}/S_0$: spontaneous liabilities (A/P (accounts payable), accruals) as \% of $S_0$; $PM$: profit margin on sales; $b$: retention ratio ($1-$dividend payout ratio); $ROE_{beg}$: Return on Equity at beginning of period.}
   \begin{itemize}
-    \item \D{Short-Term (Cash Budgeting):} Forecasts cash inflows/outflows to find shortages/surpluses.
-    \item \A{Structure: Beg. Cash + Sources - Uses = End Cash (before new fin.). Compare to Min. Cash $\implies$ Need/Surplus.}
-    \item \D{Long-Term (Pro Forma Statements):} Projected Income Statement, Balance Sheet based on sales forecasts.
-    \item \D{Percentage of Sales Method:} Many IS/BS items grow proportionally with sales.
-    \item \D{External Funds Needed (EFN) / External Capital Req. (ECR):} Added funding for pro forma BS.
-          \SF{$A^*/S_0$: assets tied to sales, as \% of current sales $S_0$; $\Delta S$: projected change in sales; $L^*_{spont}/S_0$: spontaneous liabilities (accounts payable (A/P), accruals) as \% of $S_0$; $S_1$: projected total sales ($S_0+\Delta S$); $PM$: profit margin on sales; $b$: retention ratio ($1-$dividend payout ratio).}
-    \item \F{$ECR = (\text{Req.}\Delta Assets) - (\text{Spont.}\Delta Liab.) - (\Delta Ret.Earnings)$}
-    \item \F{$ECR = (A^*/S_0)\Delta S - (L^*_{spont}/S_0)\Delta S - (S_1 \cdot PM \cdot b)$}
-    \item \A{If $ECR>0$, need external funds. If $ECR<0$, surplus funds.}
-    \item \D{Sustainable Growth Rate ($g^*$):} Max sales growth without new equity, keeping debt to equity (D/E) and payout constant.
-          \SF{$ROE_{beg}$: Return on Equity at beginning of period; $b$: retention ratio.}
-    \item \F{$g^* = ROE_{beg} \times b$}
-    \item \A{If target growth $>g^*$, must: issue equity, $\uparrow$ debt, $\uparrow b$, or $\uparrow ROE$.}
-  \end{itemize}
-  
-  \cheatsheetsubsubsection{Working Capital Management}
-  \begin{itemize}
-    \item \D{Net Working Capital (NWC):} $Current Assets (CA) - Current Liabilities (CL)$. Measures ST liquidity.
-    \item \D{Cash Conversion Cycle (CCC):} Time from paying for inputs to collecting cash from sales.
-          \SF{DSI: Days Sales of Inventory; DSO: Days Sales Outstanding; DPO: Days Payables Outstanding.}
-    \item \F{$CCC = DSI + DSO - DPO$}
-    \item \F{Inv. Period (DSI) $= \frac{Avg.Inventory}{COGS/365}$}
-    \item \F{Rec. Period (DSO) $= \frac{Avg.A/R}{Credit Sales/365}$}
-    \item \F{Pay. Period (DPO) $= \frac{Avg.A/P}{\text{COGS (or Purchases)}/365}$}
-    \item \A{Goal: Shorten CCC (faster inv. turnover \& collections, optimal payments) to cut working capital financing needs.}
-    \item \D{Specific Accounts:}
-          \begin{itemize}
-            \item \emph{Cash Mgmt:} Balance liquidity vs. investing surplus.
-            \item \emph{Inventory Mgmt (EOQ):} Minimize total inv. costs (ordering + carrying).
-                  \SF{$D$: annual demand (units); $S$: cost per order; $H$: annual holding cost per unit.}
-            \item \F{Economic Order Qty (EOQ) $= \sqrt{\frac{2 \cdot D \cdot S}{H}}$} \A{Order EOQ units.}
-            \item \emph{Accnt Receivable Mgmt (Credit Policy):} Terms (e.g., "2/10, net 30"), Credit Analysis (5 Cs: Character, Capacity, Capital, Collateral, Conditions), Collection Policy.
-            \item \emph{Accnt Payable Mgmt:} \A{Take discount if its effective anual rate (EAR) > cost of ST funds. Else, pay on last day.}
-          \end{itemize}
+    \item \F{External Capital Req. (ECR) $= (A^*/S_0)\Delta S - (L^*_{spont}/S_0)\Delta S - (S_1 \cdot PM \cdot b)$}
+          \A{Use to determine the amount of external financing needed to support a projected sales increase. If $ECR>0$, need funds; if $ECR<0$, surplus exists.}
+    \item \F{Sustainable Growth Rate ($g^*$) $= ROE_{beg} \times b$}
+          \A{Use to find the max sales growth a firm can achieve without new equity, keeping D/E and payout policy constant. If target growth $>g^*$, strategic changes are needed (e.g., issue equity, $\uparrow$ debt, $\uparrow b$, or $\uparrow ROE$).}
+    \item \D{Expectations Theory of Exchange Rates:} On average, the forward exchange rate equals the future spot rate.\A{Used to relate forward rates to expected future spot rates.}
+    \item \D{Cash Budgeting:} Forecasts cash inflows/outflows to identify future shortages or surpluses. \A{Helps in planning for short-term financing or investment decisions.}
   \end{itemize}
 
-  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  % %%%%% PART V: FINANCIAL ANALYSIS, MERGERS, \& RESTRUCTURING %%%%%%
-  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \cheatsheetsubsubsection{Working Capital Management}
+  \SF{$CA$: Current Assets; $CL$: Current Liabilities; $COGS$: Cost of Goods Sold; $A/R$: Accounts Receivable; $A/P$: Accounts Payable.}
+  \begin{itemize}
+    \item \F{Net Working Capital (NWC) $= CA - CL$}
+          \A{Use to assess short-term liquidity and operational efficiency.}
+    \item \F{Cash Conversion Cycle (CCC) $= DSI + DSO - DPO$}
+          \A{Use to find the time (days) to convert resource inputs into cash flows. Shorter CCC is generally better.}
+          \SF{DSI: Days Sales of Inventory; DSO: Days Sales Outstanding (Receivables Period); DPO: Days Payables Outstanding.}
+    \item \F{Days Sales of Inv. (DSI) $= \frac{\text{Avg. Inventory}}{\text{COGS}/365}$}
+          \A{Avg. days inventory is held before being sold.}
+    \item \F{Days Sales Out. (DSO) $= \frac{\text{Avg. A/R}}{\text{Credit Sales}/365}$}
+          \A{Avg. days to collect cash after a sale.}
+    \item \F{Days Payables Out. (DPO) $= \frac{\text{Avg. A/P}}{\text{COGS (or Purchases)}/365}$}
+          \A{Avg. days to pay suppliers.}
+    \item \F{Economic Order Qty (EOQ) $= \sqrt{\frac{2 \cdot D \cdot S}{H}}$}
+          \A{Use to find the optimal order size that minimizes total inventory costs (ordering + holding costs).}
+          \SF{$D$: annual demand; $S$: cost per order; $H$: annual holding cost per unit.}
+    \item \D{A/R Management:} Involves setting credit terms (e.g., "2/10, net 30") and collection policies. \A{Balances sales promotion with collection risk/cost.}
+    \item \D{A/P Management:} Deciding when to pay suppliers. \A{Take discounts if EAR of discount > cost of ST funds; otherwise, pay on last day.}
+  \end{itemize}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%% PART V: FINANCIAL ANALYSIS, MERGERS, \& RESTRUCTURING %%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \cheatsheetsection{Part V: Financial Analysis, Mergers, \& Restructuring}
   
-  \cheatsheetsubsubsection{Financial Ratios (Selected)}
+  \cheatsheetsubsubsection{Financial Ratios \& Analysis}
+  \SF{$MV_{Equity}$: market value of equity; $BV_{Equity}$: book value of equity; $NOPAT$: Net Operating Profit After Tax; $EBIT$: Earnings Before Interest \& Taxes; $T_c$: corporate tax rate; $WACC$: Weighted Avg. Cost of Capital; $Capital_{Employed}$: total capital (debt + equity); $NI$: Net Income; $Avg.$: average over period; $TA$: Total Assets; $COGS$: Cost of Goods Sold; $A/R$: Accounts Receivable; $CA$: Current Assets; $CL$: Current Liabilities.}
   \begin{itemize}
-    \item \SF{$MV_{Equity}$: market value of equity; $BV_{Equity}$: book value of equity; $NOPAT$: Net Operating Profit After Tax; $EBIT$: Earnings Before Interest \& Taxes; $T_c$: corporate tax rate; $WACC$: Weighted Avg. Cost of Capital; $Capital_{Employed}$: total capital (debt + equity); $NI$: Net Income; $Avg.$: average over period; $TA$: Total Assets; $COGS$: Cost of Goods Sold; $A/R$: Accounts Receivable; $PM$: Profit Margin; $T.O.$: Turnover; $CA$: Current Assets; $CL$: Current Liabilities.}
-    \item \D{Market Value Added (MVA):} $MV_{Equity} - BV_{Equity}$. \A{Wealth created over capital contributed.}
-    \item \D{Economic Value Added (EVA):} $NOPAT - (WACC \times Capital_{Employed})$.
-          \SF{$NOPAT = EBIT(1-T_c)$} \A{True economic profit.}
-    \item \D{Profitability:} $ROE = \frac{NI}{Avg.Equity}$. $ROA_{adj} = \frac{NI+Int(1-T_c)}{Avg.TotalAssets}$. Net PM $= \frac{NI}{Sales}$.
-    \item \D{Efficiency (Turnover):} Asset T.O. $= \frac{Sales}{Avg.TA}$. Inv. T.O. $= \frac{COGS}{Avg.Inv.}$. Rec. T.O. $= \frac{Credit Sales}{Avg.A/R}$.
-    \item \D{Du Pont System (ROE):} $ROE = (\frac{NI}{Sales}) \times (\frac{Sales}{Avg.TA}) \times (\frac{Avg.TA}{Avg.Equity}) = PM \times Asset T.O. \times Eq.Multiplier$. \A{Decomposes ROE.}
-    \item \D{Leverage:} D/E Ratio $= \frac{Total Debt}{Total Equity}$. Times Instrest Earned (TIE) $= \frac{EBIT}{Interest Expense}$. \A{Debt use; risk \& return.}
-    \item \D{Liquidity:} Current Ratio $= \frac{CA}{CL}$. Quick Ratio $= \frac{CA-Inventory}{CL}$. \A{Meet ST obligations.}
+    \item \F{Market Value Added (MVA) $= MV_{Equity} - BV_{Equity}$}
+          \A{Measures wealth created for shareholders above capital contributed.}
+    \item \F{Economic Value Added (EVA) $= NOPAT - (WACC \times Capital_{Employed})$}
+          \F{where $NOPAT = EBIT(1-T_c)$}
+          \A{Measures true economic profit; if positive, firm earns more than its cost of capital. (EVA=0: $NOPAT = WACC \times Cap. Emp. \implies NI_{target} + Int(1-T_c) - Int(1-T_c) = WACC \times Cap.Emp. - Int(1-T_c)$)}
+    \item \textbf{Profitability:}
+        \F{$ROE = \frac{NI}{Avg.Equity}$} \A{Return on shareholders' investment.}
+        \F{Net PM $= \frac{NI}{Sales}$} \A{Profit per dollar of sales.}
+    \item \textbf{Efficiency (Turnover):}
+        \F{Asset T.O. $= \frac{Sales}{Avg.TA}$} \A{Sales generated per dollar of assets.}
+        \F{Inv. T.O. $= \frac{COGS}{Avg.Inv.}$} \A{How quickly inventory is sold.}
+    \item \F{Du Pont System: $ROE = (\frac{NI}{Sales}) \times (\frac{Sales}{Avg.TA}) \times (\frac{Avg.TA}{Avg.Equity})$}
+          \A{Decomposes ROE into Profit Margin $\times$ Asset Turnover $\times$ Equity Multiplier to show drivers of ROE.}
+    \item \textbf{Leverage:}
+        \F{D/E Ratio $= \frac{\text{Total Debt}}{\text{Total Equity}}$} \A{Measures debt relative to equity.}
+        \F{Debt-to-Asset Ratio $= \frac{\text{Total Debt}}{\text{Total Assets}}$} \A{Proportion of assets financed by debt ($(\text{LTD}+\text{Leases}) / (\text{LTD}+\text{Leases}+\text{Equity})$).}
+        \F{TIE $= \frac{EBIT}{\text{Interest Expense}}$} \A{Ability to cover interest payments.}
+    \item \textbf{Liquidity:}
+        \F{Current Ratio $= \frac{CA}{CL}$} \A{Ability to meet short-term obligations.}
+        \F{Quick Ratio $= \frac{CA-Inventory}{CL}$} \A{More stringent ST liquidity test.}
+    \item \D{NOPAT vs. Net Income (NI):} NOPAT (Net Operating Profit After Tax, calculated as $EBIT(1-T_c)$) is the after-tax operating profit available to *all* capital providers (debt and equity). Net Income (NI) is the profit specifically available to *shareholders*.
+    \item \F{$NI = NOPAT - (\text{Interest Expense} \times (1-T_c))$}
+    \item \A{Use this to find shareholder profit (NI) when NOPAT is known or targeted (e.g., in EVA analysis where target NOPAT for EVA=0 is $WACC \times Capital_{Employed}$). The term $(\text{Interest Expense} \times (1-T_c))$ represents the after-tax cost of debt from the perspective of NOPAT distribution.}
+    \item \SF{$EBIT$: Earnings Before Interest and Taxes; $T_c$: Corporate tax rate; Interest Expense: Pre-tax interest paid to debtholders.}
   \end{itemize}
   
   \cheatsheetsubsubsection{Mergers \& Acquisitions (M\&A)}
+  \SF{$PV_A, PV_B$: pre-merger values of acquirer/target; $PV_{AB}$: value of combined firm; $\alpha$: fraction of combined firm shares given to target SHs.}
   \begin{itemize}
-    \item \SF{$PV_A, PV_B$: pre-merger values of acquirer/target; $PV_{AB}$: value of combined firm.}
-    \item \D{Merger:} Two firms combine. \D{Acquisition:} One buys another.
-    \item \D{Synergy ($\Delta PV_{AB}$):} $PV_{AB} > PV_A + PV_B$. Sources: Economies, strategic benefits, tax gains.
-    \item \D{Types:} \emph{Horizontal} (competitors). \emph{Vertical} (supply chain). \emph{Conglomerate} (unrelated).
-    \item \D{Motives (Sensible):} Economies scale/scope, vertical integration, tax gains, improved mgt.
-    \item \D{Motives (Dubious):} Diversification (shareholders (SHs) can do), earnings per share bootstrap, managerial hubris.
-    \item \D{Tender Offer:} Direct offer to target SHs. \D{Proxy Contest:} Fight for SH votes.
-    \item \F{Economic Gain from Merger $= \Delta PV_{AB} = PV_{AB} - (PV_A + PV_B)$}.
-    \item \F{Cost of Acquisition (Cash Offer) $= Cash Paid - PV_B$}.
-    \item \SF{$\alpha$: fraction of combined firm shares given to target SHs.}
-    \item \F{Cost of Acquisition (Stock Offer) $= (\alpha \times PV_{AB}) - PV_B$}.
-    \item \F{NPV of Merger to Acquirer $= \Delta PV_{AB} - Cost_{Acquisition}$}. \A{Proceed if NPV > 0.}
-    \item \D{Takeover Defenses:} Target tactics. \emph{Poison Pill}, \emph{Staggered Board}, \emph{White Knight}.
+    \item \D{Synergy:} Value created by merger, $PV_{AB} > PV_A + PV_B$.
+    \item \F{Economic Gain from Merger $= \Delta PV_{AB} = PV_{AB} - (PV_A + PV_B)$ (This is Synergy)}
+          \A{Use to quantify the total value created by the merger.}
+    \item \F{Cost of Acquisition (Cash Offer) $= \text{Cash Paid} - PV_B$}
+          \A{Premium paid over target's standalone value.}
+    \item \F{Cost of Acquisition (Stock Offer) $= (\alpha \times PV_{AB}) - PV_B$}
+          \A{Value of acquirer's stock given to target SHs, less target's pre-merger value.}
+    \item \F{NPV of Merger to Acquirer $= \Delta PV_{AB} - \text{Cost of Acquisition}$}
+          \A{Determines if merger is financially beneficial for acquirer. Proceed if NPV > 0.}
+    \item \D{Cash offer by acquirer:} May signal belief that gains are large and not yet reflected in market price, as acquirer captures all upside.
   \end{itemize}
   
   \cheatsheetsubsubsection{Corporate Restructuring}
   \begin{itemize}
-    \item \D{Changes to portfolio, capital structure, or ownership to improve value.}
-    \item \D{Leveraged Buyout (LBO):} Acquisition (often by private equity + mgt) heavily debt-financed. \A{Value drivers: Tax shields, mgt incentives, operational improvements.} MBO (Mgt Buyout).
-    \item \D{Spin-off:} New independent co. from division; shares distributed to parent SHs. No cash raised. \A{Focus core biz, unlock value.}
-    \item \D{Equity Carve-out:} Parent sells minority stake of sub to public (IPO). Cash raised. Parent usually keeps control. \A{Raise K, market value for sub.}
-    \item \D{Asset Sale/Divestiture:} Selling part of company.
-    \item \D{Privatization:} Transfer state-owned enterprises to private ownership.
-    \item \D{Bankruptcy:} \emph{Ch. 7 (Liquidation):} Assets sold, proceeds to creditors. \emph{Ch. 11 (Reorganization):} Firm protected, develops restructure plan.
-    \item \D{Absolute Priority Rule (APR):} Creditor payment order (secured, unsecured, equity). Deviations in Ch.11.
+    \item \D{Leveraged Buyout (LBO):} Acquisition using significant debt; firm often goes private. \A{Value drivers: tax shields, incentives, operational improvements.}
+    \item \D{Spin-off:} New independent company created from a division; shares distributed to parent SHs. No cash raised.
+          \A{Advantages: Wider investor choice; better managerial incentives; parent focuses on core biz; avoids cross-subsidization.}
+    \item \D{Equity Carve-out:} Parent sells minority stake of subsidiary to public (IPO). Cash raised. \A{Raise capital, establish market value for subsidiary.}
   \end{itemize}
 
   % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

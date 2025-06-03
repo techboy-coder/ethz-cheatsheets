@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.4.20)  3 JUN 2025 09:22
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2026/dev/Arch Linux) (preloaded format=xelatex 2025.4.20)  3 JUN 2025 13:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -500,7 +500,7 @@ LaTeX Font Info:    Font shape `TU/NotoSans(0)/m/n' will be
 LaTeX Warning: Unused global option(s):
     [7pt].
 
-No file cheatsheet.aux.
+(./cheatsheet.aux)
 \openout1 = `cheatsheet.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
@@ -521,6 +521,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
 LaTeX Font Info:    ... okay on input line 62.
 LaTeX Font Info:    Font shape `TU/NotoSans(0)/m/n' will be
 (Font)              scaled to size 10.0pt on input line 62.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -619,11 +620,13 @@ LaTeX Font Info:    Font shape `TU/NotoSans(0)/m/it' will be
 (Font)              scaled to size 8.0pt on input line 89.
 LaTeX Font Info:    Font shape `TU/NotoSans(0)/m/n' will be
 (Font)              scaled to size 6.0pt on input line 141.
- [1
+
+Missing character: There is no → (U+2192) in font [NotoSans-Regular.ttf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;!
+[1
 
 ]
-Underfull \hbox (badness 5388) in paragraph at lines 264--265
-[][]\TU/NotoSans(0)/b/n/8 D:[] |   []   |   []   |   []   |   [] 
+Underfull \hbox (badness 5008) in paragraph at lines 278--280
+[][]\TU/NotoSans(0)/b/n/8 F:[] \TU/NotoSans(0)/m/n/8 Days Payables Out. (DPO) $\OT1/lmr/m/n/8 = 
  []
 
 [2] (./cheatsheet.aux)
@@ -633,12 +636,12 @@ L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 8753 strings out of 475848
- 191252 string characters out of 5776013
- 735604 words of memory out of 5000000
- 31561 multiletter control sequences out of 15000+600000
+ 8758 strings out of 475848
+ 191363 string characters out of 5776013
+ 734106 words of memory out of 5000000
+ 31564 multiletter control sequences out of 15000+600000
  578322 words of font info for 75 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 94i,10n,110p,1073b,475s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,11n,110p,1073b,474s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on cheatsheet.pdf (2 pages).
