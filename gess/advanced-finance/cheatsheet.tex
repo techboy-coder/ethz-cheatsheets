@@ -1,0 +1,390 @@
+\documentclass[7pt,landscape]{extarticle} % 7pt base font for extreme density
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % Modern font, generally good
+\usepackage{amsmath,amssymb,amsfonts}
+% \usepackage[margin=0.05in, headheight=10pt, headsep=0pt, footskip=0.1in]{geometry} % EXTREMELY tight margins
+\usepackage[top=0.05in, left=0.05in, right=0.05in, bottom=0.25in, headheight=0pt, headsep=0pt, footskip=0.1in]{geometry}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{microtype} % Crucial for visual appeal and density at small font sizes
+\usepackage{ragged2e}
+\usepackage{xcolor} % For colors
+% \usepackage{sffamily} % To allow easy switching to sans-serif for titles
+
+\usepackage{ulem}
+
+\usepackage[sfdefault]{noto-sans}
+
+% --- Color Definitions ---
+\definecolor{DefColor}{RGB}{0, 60, 130}   % A deep, professional blue
+\definecolor{FormColor}{RGB}{0, 100, 60}  % A clear, dark green
+\definecolor{AppColor}{RGB}{190, 80, 0}   % A distinct, burnished orange
+\definecolor{SecTitleColor}{RGB}{40, 40, 40} % Very dark gray for section titles
+\definecolor{RuleColor}{RGB}{150, 150, 150} % Lighter gray for rule lines
+
+% --- Global settings for density ---
+\tiny % SMALLEST standard font size
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2pt plus 0.1pt minus 0.1pt} % Slightly reduced parskip
+\setlist{nolistsep, itemsep=0pt, parsep=0pt, topsep=0.1pt, partopsep=0pt, leftmargin=0.8em, labelsep=0.25em, labelwidth=*, align=left} % Adjusted leftmargin slightly for tiny font bullets
+\linespread{0.74} % Slightly more aggressive line spacing
+\setlength{\columnsep}{4pt} % Reduced space between columns
+
+\pagestyle{empty}
+
+% --- Custom commands ---
+\newcommand{\cheatsheetsection}[1]{%
+  \vspace{0.25ex plus 0.1ex minus 0.05ex}%
+  \noindent\color{SecTitleColor}\textbf{\sffamily\small\MakeUppercase{#1}}% % Sans-serif, uppercase, small, bold title
+  \par\vspace{0.02ex}%
+  {\color{RuleColor}\hrule height 0.3pt}\par\vspace{0.15ex}% % Thinner, colored rule
+}
+\newcommand{\cheatsheetsubsubsection}[1]{%
+  \vspace{0.15ex plus 0.05ex minus 0.05ex}%
+  \noindent\textbf{\sffamily\scriptsize #1}% % Sans-serif, small, bold subsubsection title
+  \par\vspace{0.05ex}%
+}
+
+% Themed commands for Definitions, Formulas, Applications
+\newcommand{\D}[1]{\textbf{\textcolor{DefColor}{D:}} \uline{#1}}
+\newcommand{\F}[1]{\textbf{\textcolor{FormColor}{F:}} #1}
+\newcommand{\A}[1]{\textbf{\textcolor{AppColor}{A:}} #1}
+\newcommand{\SF}[1]{\textit{\small (#1)}} % Short form / Variable Definition (already tiny due to global tiny)
+
+% \newcommand{\D}[1]{\textbf{\textcolor{DefColor}{D:}} \uline{#1}} % Term underlined
+% \newcommand{\F}[1]{\textbf{\textcolor{FormColor}{F:}} #1}
+% \newcommand{\A}[1]{\textbf{\textcolor{AppColor}{A:}} #1}
+% \newcommand{\SF}[1]{\textit{\tiny (#1)}} % Short form / Variable Definition
+% \newcommand{\ListHeader}[1]{\textbf{\textcolor{DefColor}{#1:}}} % For list headers
+
+
+% START DOCUMENT
+\begin{document}
+\renewcommand{\small}{\fontsize{8pt}{8pt}\selectfont} % Redefine what \small means
+\small % Use your custom \small size as the base font
+
+\begin{multicols*}{4} % 4 columns
+  \RaggedRight % Good for narrow columns, avoids uneven spacing
+
+  \noindent\textbf{\underline{\sffamily Advanced Finance Cheatsheet (cs.shivi.io)}} % Changed to SF, kept normalsize for main title
+  \vspace{0.1ex} % Reduced space after main title
+  % The original \hrulefill for the main title is removed to save space; section rules will provide separation.
+
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % %%%%% PART I: OPTIONS %%%%%%
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \cheatsheetsection{Part I: Options}
+  
+  \cheatsheetsubsubsection{Core Concepts \& Definitions}
+  \begin{itemize}
+    \item \D{Option:} Right, not obligation, to buy (Call) or sell (Put) an underlying asset ($S$) at a specified strike price ($X$) on or before an expiration date ($T$).
+    \item \D{Premium ($C_0, P_0$):} Price paid by option buyer (Long) to seller (Short). Long's max loss; Short's max profit.
+    \item \D{European vs. American:} Exercise at expiration only vs. anytime up to expiration. American usually $\ge$ European value due to early exercise flexibility (esp. with dividends or high interest rates for puts).
+    \item \D{Intrinsic Value:} Value if exercised now. Call: $\max(S-X,0)$. Put: $\max(X-S,0)$.
+    \item \D{Time Value:} Premium - Intrinsic Value. Decreases as expiration approaches (theta decay).
+    \item \D{Factors Affecting Call Value ($C_0$):} Current stock price ($S_0$) $\uparrow$, Strike price ($X$) $\downarrow$, Time to expiration ($T$) $\uparrow$, Volatility ($\sigma$) $\uparrow$, Risk-free rate ($r_f$) $\uparrow$. (For Puts: $S_0 \downarrow, X \uparrow, T \uparrow, \sigma \uparrow, r_f \downarrow$).
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Payoffs at Expiration ($S_T$) \& Profits}
+  \SF{$S_T$: Asset price at expiration; $X$: Strike price.}
+  \begin{itemize}
+    \item \F{Call Payoff $C_T = \max(S_T - X, 0)$}
+    \item \F{Put Payoff $P_T = \max(X - S_T, 0)$}
+    \item \F{Profit (Long) = Payoff - Premium}
+    \item \F{Profit (Short) = Premium - Payoff}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Moneyness}
+  \SF{$S$: Current asset price; $X$: Strike price.}
+  \begin{itemize}
+    \item \D{In-the-money (ITM):} Positive intrinsic value. Call: $S>X$. Put: $S<X$.
+    \item \D{At-the-money (ATM):} $S \approx X$.
+    \item \D{Out-of-the-money (OTM):} Zero intrinsic value. Call: $S<X$. Put: $S>X$.
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Valuation Models (Discrete, 1-Step Binomial)}
+  \SF{$S_0$: current stock price; $S_u, S_d$: stock price if up/down; $X$: strike price; $C_u = \max(S_u-X,0), C_d = \max(S_d-X,0)$: call payoffs in up/down states; $r_p$: risk-free rate per period.}
+  \begin{itemize}
+    \item \D{Replicating Portfolio (Call):} Portfolio of $\Delta$ shares and risk-free borrowing ($B_{PV}$) that matches option payoffs.
+          \F{$C_0 = \Delta S_0 - B_{PV}$}
+          \F{$\Delta = \frac{C_u - C_d}{S_u - S_d}$} (Hedge ratio, shares per option)
+          \F{$B_{PV} = \frac{\Delta S_u - C_u}{1+r_p}$} (PV of amount to borrow)
+    \item \A{E.g., $S_0=100, S_u=110, S_d=90, X=100, r_p=1\%$. Then $C_u=10, C_d=0$. $\Delta=\frac{10-0}{110-90}=0.5$. $B_{PV}=\frac{0.5(110)-10}{1.01} \approx 44.55$. $C_0=0.5(100)-44.55 \approx 5.45$.}
+    \item \D{Risk-Neutral Valuation (Call):} Discount expected payoff using risk-neutral probability $p^*$.
+          \SF{$u=S_u/S_0, d=S_d/S_0$: up/down factors for stock price.}
+          \F{$p^* = \frac{(1+r_p) - d}{u-d}$}
+          \F{$C_0 = \frac{p^*C_u + (1-p^*)C_d}{1+r_p}$}
+    \item \A{E.g., $S_0=100, S_u=110, S_d=90 \Rightarrow u=1.1, d=0.9$. With $r_p=1\%$. $p^*=\frac{1.01-0.9}{1.1-0.9}=0.55$. $C_0=\frac{0.55(10)+0.45(0)}{1.01} \approx 5.45$.}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Put-Call Parity (European, non-dividend)}
+  \begin{itemize}
+    \item \D{Relationship between European call ($C_0$) and put ($P_0$) prices with same $X, T$.}
+          \SF{$S_0$: current stock price; $X$: strike price; $P_0$: current put price; $C_0$: current call price; $r_f$: annual risk-free rate; $t$: time to expiration in years.}
+    \item \F{$C_0 + \frac{X}{(1+r_f)^t} = P_0 + S_0$}
+    \item \A{Find one price or spot arbitrage. E.g., $C_0=5, X=100, S_0=98, t=1, r_f=2\%$. PV($X$)$=\frac{100}{(1.02)^1} \approx 98.04$. $5+98.04=P_0+98 \implies P_0 \approx 5.04$.}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Black-Scholes Model}
+  \begin{itemize}
+    \item \D{Continuous-time model for European options. Assumes lognormal prices, constant volatility ($\sigma$), constant risk-free rate ($r_f$), no dividends, no transaction costs, continuous trading.} (Formula often provided or calculated with $N(d_1), N(d_2)$).
+  \end{itemize}
+
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % %%%%% PART II: DEBT FINANCING %%%%%%
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \cheatsheetsection{Part II: Debt Financing}
+  
+  \cheatsheetsubsubsection{Bond Basics \& Definitions}
+  \begin{itemize}
+    \item \D{Bond:} Issuer owes holder principal (Face Value, $FV$) and typically periodic interest (coupons).
+    \item \D{Coupon Rate:} Annual rate for coupon payments ($C_p = \text{CpnRate} \times FV / k$, where $k$ is cpns/yr).
+    \item \D{Yield to Maturity (YTM):} Discount rate equating PV of bond's future CFs to its market price ($P_0$).
+    \item \D{Indenture:} Legal contract of bond terms. \D{Trustee:} Oversees for bondholders.
+    \item \D{Security:} \emph{Debenture:} Unsecured. \emph{Mortgage Bond:} Backed by specific assets.
+    \item \D{Seniority:} Claim priority in bankruptcy. Senior > Subordinated/Junior.
+    \item \D{Call Provision:} Issuer's right to redeem bond early. \A{Issuer calls if market rates $\ll$ coupon rate.}
+    \item \D{Put Provision:} Holder's right to sell bond back to issuer early. \A{Holder puts if rates $\gg$ coupon rate or credit deteriorates.}
+    \item \D{Convertible Bond:} Holder can exchange for issuer's stock. \A{Value = Straight Bond + Call Option on Stock. Lower coupon for issuer.}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Bond Pricing}
+  \SF{$C_p$: periodic coupon payment; $FV$: face value; $YTM$: yield to maturity (annual); $k$: coupons per year; $N$: total number of periods (num years $\times k$).}
+  \begin{itemize}
+    \item \F{$P_0 = \sum_{i=1}^{N} \frac{C_p}{(1+YTM/k)^i} + \frac{FV}{(1+YTM/k)^N}$}
+    \item \A{Price vs $FV$: If $YTM > \text{CpnRate} \implies P_0 < FV$ (Discount). If $YTM < \text{CpnRate} \implies P_0 > FV$ (Premium). If $YTM = \text{CpnRate} \implies P_0 = FV$ (Par).}
+    \item \A{Ex: 2yr, 4\% semi-annual cpn, $FV=1000$, $YTM=5\%$ (ann.). $C_p=20, N=4, YTM/k=0.025$. $P_0 = \frac{20}{1.025^1} + \dots + \frac{20}{1.025^4} + \frac{1000}{1.025^4} \approx \$981.41$.}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Credit Risk \& Risky Debt}
+  \begin{itemize}
+    \item \D{Credit Risk:} Risk of issuer default. \D{Default:} Failure to make promised payment.
+    \item \D{Recovery Rate (RR):} \% of exposure recovered in default. \D{Loss Given Default (LGD):} $1-RR$.
+          \SF{$CF_{Promised}$: promised cash flow; $CF_{Default}$: cash flow in default (e.g., $FV \times RR$); $p_D$: probability of default.}
+    \item \F{$E[CF] = (1-p_D)CF_{Promised} + p_D CF_{Default}$}
+    \item \F{$V_{RiskyDebt} = PV(E[CF])$} (discount at risk-adj. rate, or $r_f$ if $p_D$ is risk-neutral).
+    \item \D{Option to Default View:} Equity is call option on firm assets ($V_{Assets}$) with $X=$ Debt $FV$. $V_{Equity} = \max(V_{Assets} - FV_{Debt}, 0)$. $V_{RiskyDebt} = V_{Assets} - V_{EquityCall}$.
+    \item \D{Credit Spread:} $YTM_{RiskyBond} - YTM_{RiskFreeBond}$. Compensates for default risk \& liquidity.
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Leasing}
+\begin{itemize}
+  \item \D{Lease:} Use an asset (e.g., truck, machine) via regular payments. Lessee uses; lessor owns.
+  
+  \item \D{Operating Lease:} Short-term, lessor maintains.  
+        \D{Financial Lease:} Long-term, lessee maintains. Like borrowing to buy.
+
+  \item \D{Net Advantage to Leasing (NAL):}  
+        Cost difference between leasing and buying.  
+        \A{If $NAL > 0$, leasing is better.}
+
+  \item \SF{$I_0$: Purchase price if buying. (e.g.\$100k machine), $L_t$: Lease payment in year $t$. (e.g.\$20k/year), $T_c$: Tax rate. (e.g.30\%), $Dep_t$: Depreciation (tax shield if owned)., $r_d$: Pre-tax borrowing rate. (e.g.8\%), $r_{d,AT}$: After-tax rate = $r_d(1 - T_c)$. (e.g.5.6\%), $SV$: After-tax salvage value at end. (e.g.\$10k)}
+  \item \F{
+    \begin{align*}
+      NAL &= I_0 \\
+          &- \sum_{t=0}^{N-1} \frac{L_t(1 - T_c)}{(1 + r_{d,AT})^{t'}} \\
+          &- \sum_{t=1}^{N} \frac{Dep_t \cdot T_c}{(1 + r_{d,AT})^t} \\
+          &\pm \frac{SV(1 - T_c)}{(1 + r_{d,AT})^N}
+    \end{align*}
+  }
+  \item \textit{Final SV term: Add if buyer keeps value; subtract if asset returns to lessor.}
+\end{itemize}
+
+
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % %%%%% PART III: RISK MANAGEMENT %%%%%%
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \cheatsheetsection{Part III: Risk Management}
+  
+  \cheatsheetsubsubsection{Why Manage Risk?}
+  \begin{itemize}
+    \item \A{Reduce costly financial distress (bankruptcy, lost sales).}
+    \item \A{Ensure cash for good investments (avoid underinvestment).}
+    \item \A{Reduce agency costs (align manager/shareholder interests).}
+    \item \A{Improve planning \& performance measurement (smoother CFs).}
+    \item \A{Goal: Smooth CFs, focus on core biz, avoid disasters (not necessarily higher avg profit).}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Tools: Insurance, Derivatives, Hedging}
+  \begin{itemize}
+    \item \D{Insurance:} Transfers risk of large, infrequent, non-financial losses for a premium. Premium = $E[Loss]$ + Loadings.
+    \item \D{Financial Derivatives:} Value derived from underlying asset.
+    \item \D{Forward Contract:} Custom OTC agreement for future buy/sell at forward price ($F_0$). \A{Locks price, reduces uncertainty. Counterparty risk.}
+          \SF{$S_0$: spot price; $r_f$: risk-free rate (annual); $t$: time to maturity in years.}
+    \item \F{$F_0 \text{(no income)} = S_0(1+r_f)^t$}
+    \item \SF{$PV(I)$: PV of known income $I_i$ from asset at times $t_i$ before $T$.}
+    \item \F{$F_0 \text{(known income } I \text{):} = (S_0 - PV(I))(1+r_f)^t$}
+    \item \SF{$r_{fp}$: periodic $r_f$; $u_p$: periodic storage cost as \% of $S_0$; $y_{cp}$: periodic convenience yield as \% of $S_0$; $N$: number of periods to delivery.}
+    \item \F{$F_0 \text{(commodity):} = S_0(1+r_{fp}+u_p-y_{cp})^N$}
+    \item \A{Ex: $S_0=\$50$, $r_f=3\%/yr$, $t=0.5yr$. $F_0=50(1.03)^{0.5} \approx \$50.74$.}
+    \item \D{Futures Contract:} Standardized forward, exchange-traded, daily mark-to-market (MTM), clearinghouse. \A{More liquid, less counterparty risk. MTM reduces default risk.}
+    \item \D{Net Convenience Yield (NCY):} Benefit of holding physical commodity ($y_c$) less storage costs ($u$). $NCY = y_c - u$.
+    \item \D{Swap:} Agreement to exchange series of CFs (e.g., Interest Rate Swap: fixed for float). Notional Principal. \A{IRS to change debt nature (fixed $\leftrightarrow$ float) or match Assets/Liabilities.}
+    \item \D{Options for Hedging:} Buy Put for price fall (floor). Buy Call for price rise (cap). Cost=premium. \A{Downside protection, retains upside (vs. forwards/futures).}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Hedging Concepts}
+  \begin{itemize}
+    \item \D{Hedge Ratio (HR or $\delta$):} Amt of hedge instrument per unit of hedged item. For options: Delta ($\Delta$).
+          \SF{$S$: spot price of asset being hedged; $F$: price of futures contract used for hedging.}
+    \item \F{$\text{HR (min variance)} = \frac{\text{Cov}(S,F)}{\text{Var}(F)}$}
+    \item \D{Basis Risk:} Imperfect hedge due to $Basis_t = S_t - F_t$ (spot vs futures) changing unpredictably. Sources: Mismatched asset, maturity, location.
+    \item \D{Duration (Bonds):} Price sensitivity to yield changes ($\Delta YTM$).
+          \SF{$PV(CF_t)$: PV of cash flow at time $t$; $P_0$: current bond price; $YTM$: yield to maturity; $k$: coupons per year.}
+    \item \F{Macaulay Duration ($D$) $= \frac{\sum t \cdot PV(CF_t)}{P_0}$} (weighted avg time to CFs)
+    \item \F{Modified Duration ($ModD$) $= \frac{D}{1+YTM/k}$}
+    \item \F{Price Change $\Delta P \approx -ModD \cdot P_0 \cdot \Delta YTM$}
+    \item \A{Duration Matching: To immunize portfolio $NW$ from small parallel $\Delta i$, set $(ModD_{Asset} \cdot MV_{Asset}) = (ModD_{Liab} \cdot MV_{Liab})$.}
+  \end{itemize}
+
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % %%%%% PART IV: FINANCIAL PLANNING \& WORKING CAPITAL MANAGEMENT %%%%%%
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \cheatsheetsection{Part IV: Financial Planning \& Working Capital Management}
+  
+  \cheatsheetsubsubsection{Financial Planning}
+  \begin{itemize}
+    \item \D{Short-Term (Cash Budgeting):} Forecasts cash inflows/outflows to find shortages/surpluses.
+    \item \A{Structure: Beg. Cash + Sources - Uses = End Cash (before new fin.). Compare to Min. Cash $\implies$ Need/Surplus.}
+    \item \D{Long-Term (Pro Forma Statements):} Projected Income Statement, Balance Sheet based on sales forecasts.
+    \item \D{Percentage of Sales Method:} Many IS/BS items grow proportionally with sales.
+    \item \D{External Funds Needed (EFN) / External Capital Req. (ECR):} Added funding for pro forma BS.
+          \SF{$A^*/S_0$: assets tied to sales, as \% of current sales $S_0$; $\Delta S$: projected change in sales; $L^*_{spont}/S_0$: spontaneous liabilities (accounts payable (A/P), accruals) as \% of $S_0$; $S_1$: projected total sales ($S_0+\Delta S$); $PM$: profit margin on sales; $b$: retention ratio ($1-$dividend payout ratio).}
+    \item \F{$ECR = (\text{Req.}\Delta Assets) - (\text{Spont.}\Delta Liab.) - (\Delta Ret.Earnings)$}
+    \item \F{$ECR = (A^*/S_0)\Delta S - (L^*_{spont}/S_0)\Delta S - (S_1 \cdot PM \cdot b)$}
+    \item \A{If $ECR>0$, need external funds. If $ECR<0$, surplus funds.}
+    \item \D{Sustainable Growth Rate ($g^*$):} Max sales growth without new equity, keeping debt to equity (D/E) and payout constant.
+          \SF{$ROE_{beg}$: Return on Equity at beginning of period; $b$: retention ratio.}
+    \item \F{$g^* = ROE_{beg} \times b$}
+    \item \A{If target growth $>g^*$, must: issue equity, $\uparrow$ debt, $\uparrow b$, or $\uparrow ROE$.}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Working Capital Management}
+  \begin{itemize}
+    \item \D{Net Working Capital (NWC):} $Current Assets (CA) - Current Liabilities (CL)$. Measures ST liquidity.
+    \item \D{Cash Conversion Cycle (CCC):} Time from paying for inputs to collecting cash from sales.
+          \SF{DSI: Days Sales of Inventory; DSO: Days Sales Outstanding; DPO: Days Payables Outstanding.}
+    \item \F{$CCC = DSI + DSO - DPO$}
+    \item \F{Inv. Period (DSI) $= \frac{Avg.Inventory}{COGS/365}$}
+    \item \F{Rec. Period (DSO) $= \frac{Avg.A/R}{Credit Sales/365}$}
+    \item \F{Pay. Period (DPO) $= \frac{Avg.A/P}{\text{COGS (or Purchases)}/365}$}
+    \item \A{Goal: Shorten CCC (faster inv. turnover \& collections, optimal payments) to cut working capital financing needs.}
+    \item \D{Specific Accounts:}
+          \begin{itemize}
+            \item \emph{Cash Mgmt:} Balance liquidity vs. investing surplus.
+            \item \emph{Inventory Mgmt (EOQ):} Minimize total inv. costs (ordering + carrying).
+                  \SF{$D$: annual demand (units); $S$: cost per order; $H$: annual holding cost per unit.}
+            \item \F{Economic Order Qty (EOQ) $= \sqrt{\frac{2 \cdot D \cdot S}{H}}$} \A{Order EOQ units.}
+            \item \emph{Accnt Receivable Mgmt (Credit Policy):} Terms (e.g., "2/10, net 30"), Credit Analysis (5 Cs: Character, Capacity, Capital, Collateral, Conditions), Collection Policy.
+            \item \emph{Accnt Payable Mgmt:} \A{Take discount if its effective anual rate (EAR) > cost of ST funds. Else, pay on last day.}
+          \end{itemize}
+  \end{itemize}
+
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % %%%%% PART V: FINANCIAL ANALYSIS, MERGERS, \& RESTRUCTURING %%%%%%
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \cheatsheetsection{Part V: Financial Analysis, Mergers, \& Restructuring}
+  
+  \cheatsheetsubsubsection{Financial Ratios (Selected)}
+  \begin{itemize}
+    \item \SF{$MV_{Equity}$: market value of equity; $BV_{Equity}$: book value of equity; $NOPAT$: Net Operating Profit After Tax; $EBIT$: Earnings Before Interest \& Taxes; $T_c$: corporate tax rate; $WACC$: Weighted Avg. Cost of Capital; $Capital_{Employed}$: total capital (debt + equity); $NI$: Net Income; $Avg.$: average over period; $TA$: Total Assets; $COGS$: Cost of Goods Sold; $A/R$: Accounts Receivable; $PM$: Profit Margin; $T.O.$: Turnover; $CA$: Current Assets; $CL$: Current Liabilities.}
+    \item \D{Market Value Added (MVA):} $MV_{Equity} - BV_{Equity}$. \A{Wealth created over capital contributed.}
+    \item \D{Economic Value Added (EVA):} $NOPAT - (WACC \times Capital_{Employed})$.
+          \SF{$NOPAT = EBIT(1-T_c)$} \A{True economic profit.}
+    \item \D{Profitability:} $ROE = \frac{NI}{Avg.Equity}$. $ROA_{adj} = \frac{NI+Int(1-T_c)}{Avg.TotalAssets}$. Net PM $= \frac{NI}{Sales}$.
+    \item \D{Efficiency (Turnover):} Asset T.O. $= \frac{Sales}{Avg.TA}$. Inv. T.O. $= \frac{COGS}{Avg.Inv.}$. Rec. T.O. $= \frac{Credit Sales}{Avg.A/R}$.
+    \item \D{Du Pont System (ROE):} $ROE = (\frac{NI}{Sales}) \times (\frac{Sales}{Avg.TA}) \times (\frac{Avg.TA}{Avg.Equity}) = PM \times Asset T.O. \times Eq.Multiplier$. \A{Decomposes ROE.}
+    \item \D{Leverage:} D/E Ratio $= \frac{Total Debt}{Total Equity}$. Times Instrest Earned (TIE) $= \frac{EBIT}{Interest Expense}$. \A{Debt use; risk \& return.}
+    \item \D{Liquidity:} Current Ratio $= \frac{CA}{CL}$. Quick Ratio $= \frac{CA-Inventory}{CL}$. \A{Meet ST obligations.}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Mergers \& Acquisitions (M\&A)}
+  \begin{itemize}
+    \item \SF{$PV_A, PV_B$: pre-merger values of acquirer/target; $PV_{AB}$: value of combined firm.}
+    \item \D{Merger:} Two firms combine. \D{Acquisition:} One buys another.
+    \item \D{Synergy ($\Delta PV_{AB}$):} $PV_{AB} > PV_A + PV_B$. Sources: Economies, strategic benefits, tax gains.
+    \item \D{Types:} \emph{Horizontal} (competitors). \emph{Vertical} (supply chain). \emph{Conglomerate} (unrelated).
+    \item \D{Motives (Sensible):} Economies scale/scope, vertical integration, tax gains, improved mgt.
+    \item \D{Motives (Dubious):} Diversification (shareholders (SHs) can do), earnings per share bootstrap, managerial hubris.
+    \item \D{Tender Offer:} Direct offer to target SHs. \D{Proxy Contest:} Fight for SH votes.
+    \item \F{Economic Gain from Merger $= \Delta PV_{AB} = PV_{AB} - (PV_A + PV_B)$}.
+    \item \F{Cost of Acquisition (Cash Offer) $= Cash Paid - PV_B$}.
+    \item \SF{$\alpha$: fraction of combined firm shares given to target SHs.}
+    \item \F{Cost of Acquisition (Stock Offer) $= (\alpha \times PV_{AB}) - PV_B$}.
+    \item \F{NPV of Merger to Acquirer $= \Delta PV_{AB} - Cost_{Acquisition}$}. \A{Proceed if NPV > 0.}
+    \item \D{Takeover Defenses:} Target tactics. \emph{Poison Pill}, \emph{Staggered Board}, \emph{White Knight}.
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Corporate Restructuring}
+  \begin{itemize}
+    \item \D{Changes to portfolio, capital structure, or ownership to improve value.}
+    \item \D{Leveraged Buyout (LBO):} Acquisition (often by private equity + mgt) heavily debt-financed. \A{Value drivers: Tax shields, mgt incentives, operational improvements.} MBO (Mgt Buyout).
+    \item \D{Spin-off:} New independent co. from division; shares distributed to parent SHs. No cash raised. \A{Focus core biz, unlock value.}
+    \item \D{Equity Carve-out:} Parent sells minority stake of sub to public (IPO). Cash raised. Parent usually keeps control. \A{Raise K, market value for sub.}
+    \item \D{Asset Sale/Divestiture:} Selling part of company.
+    \item \D{Privatization:} Transfer state-owned enterprises to private ownership.
+    \item \D{Bankruptcy:} \emph{Ch. 7 (Liquidation):} Assets sold, proceeds to creditors. \emph{Ch. 11 (Reorganization):} Firm protected, develops restructure plan.
+    \item \D{Absolute Priority Rule (APR):} Creditor payment order (secured, unsecured, equity). Deviations in Ch.11.
+  \end{itemize}
+
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % %%%%% PART VI: ADVANCED TOPICS %%%%%%
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \cheatsheetsection{Part VI: Advanced Topics}
+  
+  \cheatsheetsubsubsection{Sustainable Finance, Regulation, ESG}
+  \begin{itemize}
+    \item \D{ESG:} Environmental, Social, Governance criteria for investments \& operations.
+    \item \D{CSR (Corporate Social Responsibility):} Firm's ethical commitment to sustainable development.
+    \item \D{SDGs (Sustainable Development Goals):} 17 UN goals for global sustainability.
+    \item \D{EU Taxonomy:} Classification for environmentally sustainable economic activities.
+    \item \D{CSRD (Corp. Sustainability Reporting Directive - EU):} Mandates sustainability reporting using ESRS.
+    \item \D{Double Materiality (CSRD/ESRS):} Report on how sustainability affects business (financial view) AND how business impacts society/env (impact view).
+    \item \D{SFDR (Sust. Fin. Disclosure Regulation - EU):} ESG disclosure rules for financial market participants.
+    \item \D{TCFD (Task Force on Climate-related Fin. Disclosures):} Climate risk/opportunity disclosure framework.
+    \item \D{GRI (Global Reporting Initiative):} Standards for sustainability reporting.
+    \item \D{ESG Investing:} \emph{Exclusionary Screening}, \emph{ESG Integration}, \emph{Impact Investing}.
+    \item \D{Aggregate Confusion (ESG Ratings):} Different raters, different scores for same firm.
+    \item \A{ESG factors can be financial risks (carbon tax, stranded assets) or opportunities (green tech) impacting CFs, cost of capital, valuation.}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Bank Regulation \& Supervision (BIS perspective)}
+  \begin{itemize}
+    \item \D{BIS (Bank for International Settlements):} Fosters intl. monetary/financial cooperation. Hosts BCBS.
+    \item \D{BCBS (Basel Committee on Banking Supervision):} Global standard-setter for bank regulation (Basel Accords).
+    \item \D{Basel Accords (I, II, III+):} Intl. regs on min. capital, liquidity, supervision. \A{Aim: bank resilience, reduce systemic risk.}
+    \item \D{Regulatory Capital:} To absorb unexpected losses.
+          \begin{itemize}
+            \item \emph{CET1 (Common Equity Tier 1):} Highest quality (common shares, ret. earnings).
+            \item \emph{AT1 (Additional Tier 1):} E.g., CoCos (absorb losses as going concern).
+            \item \emph{Tier 2 Capital:} Subordinated debt (absorb losses in gone-concern).
+          \end{itemize}
+    \item \D{RWA (Risk-Weighted Assets):} Assets weighted by risk. Capital req. = \% of RWA.
+          \SF{These are minimums; buffers (CCB, G-SIB) increase actual requirements.}
+    \item \F{CET1 Ratio $= \frac{CET1}{RWA} \ge 4.5\% $ (+ buffers)}
+    \item \F{Tier 1 Ratio $= \frac{CET1+AT1}{RWA} \ge 6\% $ (+ buffers)}
+    \item \F{Total Capital Ratio $= \frac{Tier1+Tier2}{RWA} \ge 8\% $ (+ buffers)}
+    \item \D{Leverage Ratio (non-risk-based):} \F{$\frac{Tier 1 Capital}{Total Exposure Measure} \ge 3\%$ (example)}
+    \item \D{Liquidity Coverage Ratio (LCR):} ST liquidity. \F{$\frac{\text{High-Quality Liquid Assets (HQLA)}}{\text{Net Cash Outflows (30-day stress)}} \ge 100\%$}
+    \item \D{Net Stable Funding Req. (NSFR):} LT funding stability. \F{$\frac{\text{Available Stable Funding (ASF)}}{\text{Required Stable Funding (RSF)}} \ge 100\%$}
+    \item \D{IRRBB (Interest Rate Risk in Banking Book):} Risk to bank capital/earnings from rate moves on non-trading items.
+    \item \A{Crises (GFC 2008, Banks 2023): Highlighted undercapitalization, liquidity/funding issues, IRRBB, oversight gaps. Led to reforms (Basel III, reviews).}
+  \end{itemize}
+  
+  \cheatsheetsubsubsection{Digital Treasury (Holcim Example context)}
+  \begin{itemize}
+    \item \D{Corporate Treasury:} Manages financial assets/liabilities, cash, liquidity, funding, fin. risks (FX, IR), bank relations.
+    \item \D{FinTech:} Tech/innovation improving financial services.
+    \item \D{Digital Treasury Aspects:}
+          \begin{itemize}
+            \item \emph{Integrated Systems:} Platforms connecting treasury functions (cash mgt, payments, FX, risk).
+            \item \emph{Centralization:} Consolidating ops (cash pooling, FX netting, in-house banking) via tech.
+            \item \emph{Real-time Data \& Analytics:} For better forecasting, risk assessment, decisions.
+            \item \emph{Automation:} Of routine tasks (payments, reconciliation, reporting).
+            \item \emph{FinTech Solutions:} Tools for Supply Chain Finance, Receivables Mgt, Fraud Prevention.
+          \end{itemize}
+    \item \A{Digital treasury: from manual/siloed to automated, integrated, data-driven. More strategic role. Holcim likely uses for global treasury.}
+  \end{itemize}
+
+\end{multicols*}
+\end{document}
