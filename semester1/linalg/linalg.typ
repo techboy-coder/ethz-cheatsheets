@@ -230,7 +230,7 @@ For any $A x = b$ we have three options: 1) No solution 2) One solution 3) Infin
 
 *Inverse Theorem 3.11:* Let $A in RR^(m times m)$, then the following are equivalent:
 1. $exists A^(-1)$
-2. $forall b in RR^m exists x : A x = b$
+2. $forall b in RR^m exists x : A x = b$, and $x$ is unique
 3. The columns of $A$ are independent
 
 = Orthogonality
