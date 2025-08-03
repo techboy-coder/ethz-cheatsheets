@@ -175,7 +175,7 @@ Basically $A x = b$.
 
 == LU Decomposition
 
-Run REF on $A in RR^(m times n)$ to generate $L in RR^(m times n)$ and track coefficients in $U in RR^(n times n)$.
+Run REF on $A in RR^(m times n)$ to generate $U in RR^(m times n)$ and track coefficients in $L in RR^(n times n)$, where $L$ contains $1$'s on the diagonal and the opposite values of the operations performed on the corresponding rows.
 
 == Permutation Matrices
 
