@@ -102,7 +102,7 @@ Other:
 Satisfy:
 - $a dot (b + c) = a dot b + a dot c$ (linear in second factor)
 - $a dot (lambda b) = lambda (a dot b)$ (linear in second factor)
-- $a dot b = b dot a$ (symetric for $RR$) and $a dot b = b^H dot a^H$ (hermitian for $CC$)
+- $a dot b = b dot a$ (symmetric for $RR$) and $a dot b = b^H dot a^H$ (hermitian for $CC$)
 - $forall a in V : a dot a (> 0) or (= 0 "iff" a = 0)$ (positive definite)
 
 Other:
@@ -152,7 +152,7 @@ Any linear transformation can be represented by a matrix: $A = mat(
 
 == Spaces
 
-For square we have: 1) Identity, 2) Diagonal 3) Upper/Lower 4) Symetric ($A^H = A$)
+For square we have: 1) Identity, 2) Diagonal 3) Upper/Lower 4) Symmetric ($A^H = A$)
 
 - *Rank:* $"rank"(A) = "number of independent vectors"$. (Fullrank iff intertible for square matrices)
   - $"rank"(A) = "rank"(A^T) = "rank"(A^T A) = "rank"(A A^T)$
@@ -477,11 +477,11 @@ Write down equation in the form of $arrow(g)_n = M arrow(g)_(n-1)$ with $g_0$ be
 
 $A, B$ are called similar matrices if $exists S "s.t." B = S^(-1) A S$. Similar matrices are equal dimensional square matrices. Similar matrices share Eigenvalues.
 
-- *Spectral Theorem:* Any symetric matrix has $n$ Eigenvalues and an orthonormal basis made out of Eigenvectors of $A$.
-- Symetric matrices can be diagonalized as $S = V Lambda V^(-1) = V Lambda V^T$. 
-- The rank of a symetric matrix is the number of non-zero Eigenvalues.
+- *Spectral Theorem:* Any symmetric matrix has $n$ Eigenvalues and an orthonormal basis made out of Eigenvectors of $A$.
+- Symmetric matrices can be diagonalized as $S = V Lambda V^(-1) = V Lambda V^T$. 
+- The rank of a symmetric matrix is the number of non-zero Eigenvalues.
 - $S = sum_(i = 1)^n lambda_i v_i v_i^T$.
-- Symetric matrices only have real Eigenvalues.
+- Symmetric matrices only have real Eigenvalues.
 
 == Rayleigh Quotient
 
