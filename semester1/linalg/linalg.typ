@@ -17,7 +17,7 @@
   body
 ) = {
   let line_skip = 0.4em
-  let font_size = 10pt
+  let font_size = 9pt
   let level1_color = "#264653";
   let level2_color = "#2A9D8F"; 
   let level3_color = "#00B4D8"; 
