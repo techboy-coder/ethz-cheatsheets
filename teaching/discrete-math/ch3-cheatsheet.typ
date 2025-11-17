@@ -1,7 +1,7 @@
 #import "@preview/showybox:2.0.4": showybox
 
 #let homepage = link("https://cs.shivi.io")[cs.shivi.io]
-#let author = "Shivram Sambhus (HS25)"
+#let author = "Shivram Sambhus (Group K, HS25)"
 #let title = "DM Cheatsheet - Sets, Relations, & Functions"
 
 #set page(
@@ -98,7 +98,7 @@
   #text(title, weight: "bold") - #text(author)
 
   = Introduction: The Building Blocks of Discrete Structures
-  _This document covers the fundamental concepts of sets, relations, and functions as presented in Chapter 3. It emphasizes procedural understanding, proof construction, and the connections between these abstract structures._
+  _This document covers the fundamental concepts of sets, relations, and functions as presented in Chapter 3._
 
   == TOC
 
@@ -162,13 +162,22 @@
     Since both inclusions hold, the sets are equal by definition.
   ])
 
-  == Set Operations
+  == Set Operations & Properties
   #concept-block(body: [
     #inline[Core Operations]
     - *Union:* $A union B = {x | x in A or x in B}$
     - *Intersection:* $A inter B = {x | x in A and x in B}$
     - *Difference:* $A backslash B = {x | x in A and x in.not B}$
     - *Cartesian Product:* $A times B = {(a, b) | a in A and b in B}$. Creates *ordered pairs*. Note that $A times B != B times A$ unless $A=B$ or one is empty. The product is not associative: $(A times B) times C != A times (B times C)$.
+
+    #inline[Laws of Set Algebra]
+    These are direct consequences of the laws of logic.
+    - *Commutative:* $A union B = B union A$, $A inter B = B inter A$
+    - *Associative:* $(A union B) union C = A union (B union C)$
+    - *Distributive:* $A inter (B union C) = (A inter B) union (A inter C)$
+    - *De Morgan's Laws:*
+      - $overline(A union B) = overline(A) inter overline(B)$
+      - $overline(A inter B) = overline(A) union overline(B)$
   ])
 
   = Part II: Relations (Relationen)
@@ -182,6 +191,8 @@
     - *Composition ($S circle.small R$):* If $R subset.eq A times B$ and $S subset.eq B times C$.
       $S circle.small R = {(a, c) | exists b in B, (a, b) in R and (b, c) in S}$.
       *Intuition:* A path from $a$ to $c$ through some intermediate $b$. The order is critical: $S circle.small R$ means apply $R$ *then* $S$. It is associative: $(T circle.small S) circle.small R = T circle.small (S circle.small R)$.
+    - *Transitive Closure ($R^+$):* $R^+ = union_(i=1)^infinity R^i = R union R^2 union R^3 union ...$
+      *Intuition:* $(a,b) in R^+$ if there is a path of *any* length ($>=1$) from $a$ to $b$.
   ])
 
   == Properties of Relations on a Set A
@@ -191,7 +202,7 @@
       align: (left, center, left),
       table.header([*Property*], [*Definition ($forall a,b,c in A$)*], [*Intuition/Graph*]),
       [Reflexive], [$a R a$], [Every node has a self-loop.],
-      [Irreflexive], [$a slash(R) a$], [No node has a self-loop.],
+      [Irreflexive], [$a in.not R a$], [No node has a self-loop.],
       [Symmetric], [$a R b -> b R a$], [If there's an edge from a to b, there's one back (all edges are two-way).],
       [Antisymmetric], [$(a R b and b R a) -> a = b$], [No two distinct nodes have edges in both directions between them.],
       [Transitive], [$(a R b and b R c) -> a R c$], [If there's a path $a -> b -> c$, there's a direct edge $a -> c$. "Shortcut property".],
@@ -258,10 +269,10 @@
     #table(
       columns: 3,
       align: left,
-      table.header([*Type*], [*Formal Definition*], [*Intuition*]),
-      [Injective (one-to-one)], [$forall a_1, a_2 in A, f(a_1) = f(a_2) -> a_1 = a_2$.], [No two inputs map to the same output. No collisions.],
-      [Surjective (onto)], [$forall b in B, exists a in A, f(a) = b$.], [Every element in the codomain is "hit" by at least one input.],
-      [Bijective], [Both injective and surjective.], [A perfect, one-to-one correspondence between two sets. An inverse function $f^(-1)$ exists if and only if $f$ is bijective.],
+      table.header([*Type*], [*Formal Definition*], [*Intuition & Cardinality*]),
+      [Injective (one-to-one)], [$forall a_1, a_2 in A, f(a_1) = f(a_2) -> a_1 = a_2$.], [No two inputs map to the same output. For finite sets, $|A| <= |B|$.],
+      [Surjective (onto)], [$forall b in B, exists a in A, f(a) = b$.], [Every element in the codomain is "hit". For finite sets, $|A| >= |B|$.],
+      [Bijective], [Both injective and surjective.], [A perfect one-to-one correspondence. For finite sets, $|A| = |B|$. An inverse function $f^(-1)$ exists iff $f$ is bijective.],
     )
   ])
 
@@ -289,7 +300,7 @@
 
     #inline[Key Results & Proof Techniques]
     - *Countable Sets:* $NN, ZZ, QQ, NN times NN$, the set of all finite-length strings.
-      *Proof Strategy:* To show a set $A$ is countable, find an *injection* from $A$ into a known countable set (like $NN$ or $NN times NN$).
+      *Proof Strategy:* To show a set $A$ is countable, find an *injection* from $A$ into a known countable set (like $NN$ or $NN times NN$). Example: $QQ$ is countable because any rational can be written as $p/q$, mapping to an ordered pair $(p,q) in ZZ times NN$.
     - *Uncountable Sets:* $RR, cal(P)(NN)$, the set of infinite binary sequences ${0,1}^infinity$, the interval $[0,1]$.
       *Proof Strategy:* Use Cantor's Diagonalization Argument.
 
